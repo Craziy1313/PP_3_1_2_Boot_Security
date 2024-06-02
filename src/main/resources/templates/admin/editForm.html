@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditForm</title>
+</head>
+<body>
+<form th:method = "POST" th:action = "@{/userUpdate}" th:object = "${user}">
+    <input name="id" th:field="*{id}" th:value="${user.id}" hidden="hidden">
+    <label for="name">Enter Name  </label>
+    <input type="text" th:field="*{firstName}" id="name">
+    <br/>
+    <label for="lastName">Enter LastName  </label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <br/>
+    <label for="email">Enter Email  </label>
+    <input type="text" th:field="*{email}" id="email">
+    <br/>
+    <input type = submit value="UPDATE">
+</form>
+</body>
+</html>
