@@ -80,6 +80,22 @@ public class User implements UserDetails {
       this.email = email;
    }
 
+   public Collection<Role> getRoles() {
+      return roles;
+   }
+
+   public void setRoles(Collection<Role> roles) {
+      this.roles = roles;
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
+   }
+
+   public void setPassword(String password) {
+      this.password = password;
+   }
+
    @Override
    public String toString() {
       return "User{" +
@@ -124,4 +140,5 @@ public class User implements UserDetails {
    public boolean isEnabled() {
       return true;
    }
+
 }

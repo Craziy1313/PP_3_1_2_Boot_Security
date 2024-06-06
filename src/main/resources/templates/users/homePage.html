@@ -5,41 +5,36 @@
     <title>Users</title>
 </head>
 <body>
-<table border="1" cellpadding="5">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>LastName</th>
-        <th>E-mail</th>
-        <th>Operations</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
+<th:block>
+    <table>
+        <tr>
+            <td><b>Name:</b></td>
+            <td th:text = "${user.firstName}"></td>
+        </tr>
+        <tr>
+            <td><b>LastName:</b></td>
+            <td th:text = "${user.lastName}"></td>
+        </tr>
+        <tr>
+            <td><b>Email:</b></td>
+            <td th:text = "${user.email}"></td>
+        </tr>
+        <tr>
+            <td><b>USERNAME:</b></td>
+            <td th:text = "${user.username}"></td>
+        </tr>
+        <tr>
+            <td><b>PASSWORD:</b></td>
+            <td th:text = "${user.password}"></td>
+        </tr>
 
-
-        <td th:text="${user.getId()}"></td>
-        <td th:text="${user.getFirstName()}"></td>
-        <td th:text="${user.getLastName()}"></td>
-        <td th:text="${user.getEmail()}"></td>
-        <td>
-            <form th:action="@{/edit}">
-                <button type="submit" th:name="id" th:value="${user.id}">Edit</button>
-            </form>
-
-            <form th:action="@{delete}">
-                <button type="submit" th:name="id" th:value="${user.id}">DELETE</button>
-            </form>
-        </td>
-    </tr>
-
-    </tbody>
-</table>
+    </table>
+</th:block>
 <br/>
 <hr/>
-<input type="button" value="CREATE USER"
-       onclick="window.location.href = 'new'">
+<form th:action="@{/logout}">
+    <button type="submit">LOGOUT</button>
+</form>
 <br/>
 </body>
 </html>

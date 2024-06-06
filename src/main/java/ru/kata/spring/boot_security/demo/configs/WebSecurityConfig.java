@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,15 +28,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("auth/login","/error").permitAll()
+                .antMatchers("/auth/login","/error").permitAll()
                 .antMatchers("/", "/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/", "/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/auth/login")
-                .loginProcessingUrl("process_login")
+                .formLogin().loginPage("/auth/login").permitAll()
+                .failureUrl("/auth/login?error").permitAll()
+                .loginProcessingUrl("/process_login").permitAll()
                 .successHandler(successUserHandler)
-                .failureUrl("auth/login?error").permitAll();
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/auth/login").permitAll();
+
+
 
     }
 

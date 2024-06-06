@@ -12,6 +12,8 @@
         <th>Name</th>
         <th>LastName</th>
         <th>E-mail</th>
+        <th>UserName</th>
+        <th>Password</th>
         <th>Operations</th>
     </tr>
     </thead>
@@ -23,12 +25,14 @@
         <td th:text="${user.getFirstName()}"></td>
         <td th:text="${user.getLastName()}"></td>
         <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getUsername}"></td>
+        <td th:text="${user.getPassword}"></td>
         <td>
-            <form th:action="@{/edit}">
+            <form th:action="@{admin/edit}">
                 <button type="submit" th:name="id" th:value="${user.id}">Edit</button>
             </form>
 
-            <form th:action="@{delete}">
+            <form th:action="@{admin/delete}">
                 <button type="submit" th:name="id" th:value="${user.id}">DELETE</button>
             </form>
         </td>
@@ -39,7 +43,11 @@
 <br/>
 <hr/>
 <input type="button" value="CREATE USER"
-       onclick="window.location.href = 'new'">
+       onclick="window.location.href = 'admin/new'">
 <br/>
+<br/>
+<form th:action="@{/logout}">
+    <button type="submit">LOGOUT</button>
+</form>
 </body>
 </html>

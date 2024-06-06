@@ -10,9 +10,10 @@ import java.util.Collection;
 @Table (name = "roles")
 public class Role implements GrantedAuthority {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "type")
     private String roleType;
@@ -32,4 +33,16 @@ public class Role implements GrantedAuthority {
     public void setRoleType(String roleType) {
         this.roleType = roleType;
     }
+    @Override
+    public String toString() {
+        return roleType;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
